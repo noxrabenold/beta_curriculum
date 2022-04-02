@@ -177,7 +177,25 @@ You can define functions as usual.
   `"#{greeting} I am #{hero.name}"`
 
 ```elixir
+defmodule Hero do
+  defstruct [:name, :catchphrase, :secret_identity]
+end
 
+venom = %Hero{name: "Venom", catchphrase: "Lethal Protector", secret_identity: "Eddie Brock"}
+
+reveal = fn x ->
+  "I am secretly #{x.secret_identity}!"
+end
+
+introduce = fn x, greeting ->
+  "#{greeting} I am #{x.name}"
+end
+
+introduce.(venom, "Hello")
+```
+
+```elixir
+%Hero{}
 ```
 
 ### Your Turn
@@ -195,19 +213,23 @@ classDiagram
 ```
 
 ```elixir
-
+spider_man = %Hero{
+  name: "Spider-Man",
+  catchphrase: "Friendly neighborhood Spider-Man!",
+  secret_identity: "Peter Parker"
+}
 ```
 
 Use the `Hero.introduce/2` function on `spider_man`.
 
 ```elixir
-
+introduce.(spider_man, "Hello")
 ```
 
 Use the `Hero.reveal/1` function on `spider_man`.
 
 ```elixir
-
+reveal.(spider_man)
 ```
 
 ### Updating a Struct

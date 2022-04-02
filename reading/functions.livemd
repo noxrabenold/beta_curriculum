@@ -228,7 +228,11 @@ In the Elixir cell below, create a function `is_even?` that checks if an integer
 The function should return `true` if the integer is even and `false` if the integer is odd.
 
 ```elixir
+is_even? = fn input ->
+  rem(input, 2) == 0
+end
 
+is_even?.(3)
 ```
 
 ## Multi-Parameter Functions
@@ -278,7 +282,11 @@ In the Elixir cell below create a multi-parameter function `calculate_force/2`.
 The function should calculate force by returning `mass * force`.
 
 ```elixir
+calculate_force = fn mass, acceleration ->
+  mass * acceleration
+end
 
+calculate_force.(5, 6)
 ```
 
 ## Shorthand Syntax
@@ -309,7 +317,8 @@ add_two.(2, 3)
 In the Elixir cell below, convert your `calculate_force/2` function from earlier into short-hand syntax.
 
 ```elixir
-
+calculate_force = &(&1 * &2)
+calculate_force.(5, 6)
 ```
 
 ## First-class Functions
@@ -355,5 +364,9 @@ In the Elixir cell below,
 * Call `is_not?/2` with the`is_even?/1` function from earlier and an integer to check if a number is odd.
 
 ```elixir
+is_not? = fn is_even?, input ->
+  not is_even?.(input)
+end
 
+is_not?.(is_even?, 4)
 ```

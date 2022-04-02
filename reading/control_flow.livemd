@@ -85,7 +85,7 @@ defmodule RockPaperScissors do
     (player1_choice === "Rock" && player2_choice === "Rock" && "Draw") ||
       (player1_choice === "Rock" && player2_choice === "Paper" && "Player2") ||
       (player1_choice === "Rock" && player2_choice === "Scissors" && "Player1") ||
-      (player1_choice === "Paper" && player2_choice === "Rock" && "Player2") ||
+      (player1_choice === "Paper" && player2_choice === "Rock" && "Player1") ||
       (player1_choice === "Paper" && player2_choice === "Paper" && "Draw") ||
       (player1_choice === "Paper" && player2_choice === "Scissors" && "Player2") ||
       (player1_choice === "Scissors" && player2_choice === "Rock" && "Player2") ||
@@ -262,7 +262,7 @@ or `"Good afternoon!"`.
 Replace `8` with a time in the afternoon using 24 hour format. See that it now runs `"Good afternoon!"`
 
 ```elixir
-current_hour = 8
+current_hour = 18
 
 if current_hour < 12 do
   "Good morning!"
@@ -330,7 +330,13 @@ to `20` will be hot.
 Enter your answer in the Elixir cell below.
 
 ```elixir
+current_temp = 20
 
+if current_hour <= 20 do
+  "Hot!"
+else
+  "Cold."
+end
 ```
 
 ## Unless
@@ -384,7 +390,11 @@ In the Elixir cell below
 * Create an `unless` statement. which returns `"awake"` unless `tired`.
 
 ```elixir
+tired = false
 
+unless tired do
+  "Awake!"
+end
 ```
 
 ## Case
@@ -506,7 +516,7 @@ try changing the `weather` variable by binding it to `"rainy"` and re-evaluate t
 Elixir cell. Try that again with `"cold"`, and `"snowy"`
 
 ```elixir
-weather = "sunny"
+weather = "cold"
 
 case weather do
   "sunny" -> "wear a t-shirt"
@@ -597,10 +607,10 @@ days_since_watered = 14
 plant = "wilting"
 
 cond do
+  plant === "dead" -> "get a new plant"
   plant === "wilting" && !daylight -> "use a UV light"
   plant === "wilting" && daylight -> "put the plant in sunlight"
   days_since_watered >= 14 -> "water the plant"
-  plant === "dead" -> "get a new plant"
 end
 ```
 
@@ -645,5 +655,12 @@ The conditions for `grade` should be:
 * 1-54 is a D
 
 ```elixir
+grade = 100
 
+cond do
+  grade >= 85 -> "A!"
+  grade <= 84 && grade >= 70 -> "B."
+  grade <= 69 && grade >= 55 -> "C."
+  grade <= 54 -> "D."
+end
 ```

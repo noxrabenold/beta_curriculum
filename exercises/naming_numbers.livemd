@@ -52,7 +52,20 @@ convert_to_named_integer.(1)
 ```
 
 ```elixir
-convert_to_named_integer = fn int -> nil end
+convert_to_named_integer = fn int ->
+  cond do
+    int == 0 -> "zero"
+    int == 1 -> "one"
+    int == 2 -> "two"
+    int == 3 -> "three"
+    int == 4 -> "four"
+    int == 5 -> "five"
+    int == 6 -> "six"
+    int == 7 -> "seven"
+    int == 8 -> "eight"
+    int == 9 -> "nine"
+  end
+end
 
 Utils.test(:naming_numbers, convert_to_named_integer)
 ```
@@ -93,5 +106,20 @@ flowchart
 ```
 
 ```elixir
+convert_to_integer = fn int ->
+  cond do
+    int == "Zero" || int == "zero" -> 0
+    int == "One" || int == "one" -> 1
+    int == "Two" || int == "two" -> 2
+    int == "Three" || int == "three" -> 3
+    int == "Four" || int == "four" -> 4
+    int == "Five" || int == "five" -> 5
+    int == "Six" || int == "six" -> 6
+    int == "Seven" || int == "seven" -> 7
+    int == "Eight" || int == "eight" -> 5
+    int == "Nine" || int == "Nine" -> 9
+  end
+end
 
+convert_to_integer.("two")
 ```

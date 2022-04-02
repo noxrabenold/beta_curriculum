@@ -18,7 +18,17 @@ In the Elixir cell below, create an `Character` struct.
 * characters can have a `:weapon` that will be either `:sword`, `:dagger`, or `:staff`.
 
 ```elixir
+defmodule Character do
+  defstruct [:name, :class, :weapon]
+end
+```
 
+```elixir
+arthur = %Character{name: "Arthur", class: "Warrior", weapon: "Sword"}
+gandalf = %Character{name: "Gandalf", class: "Wizard", weapon: "Staff"}
+jarlaxle = %Character{name: "Jarlaxle", class: "Rogue", weapon: "Daggers"}
+
+jarlaxle.weapon
 ```
 
 Create instances of character structs with the following information:
@@ -78,5 +88,33 @@ In the Elixir cell below.
   * any other combination: `"I'm not sure a #{character.weapon} suits a #{character.class}."`
 
 ```elixir
+defmodule Dialogue do
+  @arthur arthur
+  @gandalf gandalf
+  @jarlaxle jarlaxle
 
+  def greet(character) do
+    "Hello, my name is #{character.name}!"
+  end
+
+  def attack(character, enemy) do
+    "I attack the #{enemy} with my #{character.weapon}!"
+  end
+
+  def relinquish_weapon(character) do
+    (character.class === "Rogue" && "Fine, have my #{character.weapon}. I have more hidden anyway") ||
+      (character.class === "Wizard" && "You would not part an old man from his walking stick?") ||
+      (character.class === "Warrior" && "Have my #{character.weapon} then!") ||
+      (character.class === nil && "My Precious!")
+  end
+
+  def matching_weapon(character) do
+    (character.class === "Rogue" && character.weapon === "Daggers" && "Hidden and deadly.") ||
+      (character.class === "Wizard" && character.weapon === "Staff" && "My lovely magical staff.") ||
+      (character.class === "Warrior" && character.weapon === "Sword" && "My noble sword!") ||
+      (character.class === nil && "I'm not sure a #{character.weapon} suits a #{character.class}.")
+  end
+end
+
+Dialogue.matching_weapon(arthur)
 ```
